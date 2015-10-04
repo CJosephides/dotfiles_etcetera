@@ -58,7 +58,7 @@ everywhere. I've gotten them to work under vim, but I still have problems with
 python and ipython. In linux, at least, Ctrl-a and Ctrl-e serve as the HOME and
 END keys, so I suppose I'll use those.
 
-### Colors
+### COLORS
 
 I use the [base16](http://chriskempson.github.io/base16/) color scheme and its
 variants. This
@@ -69,6 +69,6 @@ shell scripts that can be used to generate gnome terminal profiles. The default
 I find that I don't have to change the color scheme in vim if my terminal
 colors are good to begin with.
 
+### FONT
 
-
-
+I use the (Hack)[https://github.com/chrissimpkins/Hack] font for writing code.
