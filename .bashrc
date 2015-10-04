@@ -122,7 +122,7 @@ export EDITOR="vim"
 export TERM="xterm-256color"
 
 # Bind HOME/END keys to correct neovim behavior under tmux
-if [[ -n "$TMUX" ]]; then
-  bind '"\e^A":"\eOH"'
-  bind '"\e^E":"\eOF"'
-fi
+# if [[ -n "$TMUX" ]]; then
+#   bind '"\e^A":"\eOH"'
+#   bind '"\e^E":"\eOF"'
+# fi
