@@ -18,9 +18,10 @@ Plugin 'kien/ctrlp.vim'  " full path everything finder
 Plugin 'scrooloose/syntastic'  " syntax checking
 Plugin 'vim-scripts/Tagbar'  " tag browsing
 Plugin 'tpope/vim-commentary'  " comment with motions
-" Plugin 'Valloric/YouCompleteMe'  " autocomplete - trouble with python 3
-" Plugin 'davidhalter/jedi'  " python autocompelte / static analysis
+" Plugin 'Valloric/YouCompleteMe'  " autocomplete - trouble
+Plugin 'davidhalter/jedi'  " python autocompelte / static analysis
 Plugin 'bling/vim-airline'  " statusbar upgrade
+" Plugin 'chriskempson/base16-vim'
 
 " Vundle plugin definitions "
 """""""""""""""""""""""""""""
@@ -53,16 +54,6 @@ set smartindent
 " Shortcut to disable auto indenting in current file
 nnoremap <F8> :setl noai nocin nosi inde=<CR>
 
-" Syntastic configuration
-" set statusline+=%warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Airline
 set laststatus=2
 
@@ -91,8 +82,25 @@ set cmdheight=2
 
 " Syntastic
 
-" Use python3 linter
-let g:syntastic_python_python_exec = "/usr/bin/python3"
+" Syntastic configuration
+" set statusline+=%warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-" Colorschemes
-" The 'Tomorrow' series of colorschemes is great!
+" When/how to check the file
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Use python3 linter
+let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_python_checkers = ['flake8', 'pep8', 'python']
+
+" Jedi-vim 
+" Using <C-N> for omnicompletion
+inoremap <silent> <buffer> <C-N> <c-x><c-o>
+let g:jedi#popup_select_first=0  " don't automatically select the first item
+
+" Related, but not of jedi-vim
+set completeopt=menuone,longest,preview
