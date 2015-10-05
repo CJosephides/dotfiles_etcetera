@@ -61,7 +61,7 @@ set laststatus=2
 nnoremap <leader>. :CtrlPTag<cr>
 
 " Colorscheme
-colorscheme Tomorrow
+" colorscheme Tomorrow
 
 " Spelling
 set spell
@@ -101,6 +101,9 @@ let g:syntastic_python_checkers = ['flake8', 'pep8', 'python']
 " Using <C-N> for omnicompletion
 inoremap <silent> <buffer> <C-N> <c-x><c-o>
 let g:jedi#popup_select_first=0  " don't automatically select the first item
+
+" Fix the pink(!) autocomplete suggestion menu
+hi Pmenu cterm=none ctermfg=Blue ctermbg=none
 
 " Related, but not of jedi-vim
 set completeopt=menuone,longest,preview
