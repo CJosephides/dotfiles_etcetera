@@ -107,3 +107,11 @@ hi Pmenu cterm=none ctermfg=Blue ctermbg=none
 
 " Related, but not of jedi-vim
 set completeopt=menuone,longest,preview
+
+" ------------
+" Commands ---
+
+" Visual selection by range
+command! -range Vis call setpos('.', [0,<line1>,0,0]) |
+                    \ exe "normal V" |
+                    \ call setpos('.', [0,<line2>,0,0])
