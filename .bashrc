@@ -121,7 +121,7 @@ export EDITOR="vim"
 # Use high-color terminal emulation
 export TERM="xterm-256color"
 
-# Bind HOME/END keys to correct neovim behavior under tmux
+# # Bind HOME/END keys to correct neovim behavior under tmux
 # if [[ -n "$TMUX" ]]; then
 #   bind '"\e^A":"\eOH"'
 #   bind '"\e^E":"\eOF"'

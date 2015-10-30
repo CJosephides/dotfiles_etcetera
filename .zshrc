@@ -84,4 +84,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # # # # #
+
+# Colors
 export TERM="xterm-256color"
+
+# Aliases
+alias gmack="/usr/bin/gm"
+

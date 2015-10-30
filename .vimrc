@@ -63,7 +63,7 @@ nnoremap <leader>. :CtrlPTag<cr>
 " Colorscheme
 " colorscheme Tomorrow
 
-" Spelling
+" Change spelling highlights to underline
 set spell
 highlight clear SpellBad
 highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
@@ -73,6 +73,10 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
+
+" Change fold colors
+highlight Folded cterm=none ctermfg=DarkYellow ctermbg=none
+highlight FoldColumn cterm=none ctermfg=DarkYellow ctermbg=none
 
 " Misc
 set title
