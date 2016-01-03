@@ -12,7 +12,7 @@ of zsh, vim, and tmux, to work as much as I can in the terminal.
 Python receives a lot of attention since I do all my data science projects with
 it.
 
-### ZSH
+### zsh
 
 I'm using zsh, together with oh-my-zsh, as a replacement for the bash shell.
 I'm still not entirely sure what benefit this provides and, more importantly,
@@ -40,7 +40,7 @@ sudo shutdown -r 0
 The .zshrc is included in this repository and acts like .bashrc. Note the
 changes to the 'pygmalion' theme and the terminal setting to a 256-color xterm.
 
-### VIM
+### vim
 
 I decided against using neovim, for the time being, because of minor -- but
 frustrating -- issues when working under tmux. Vim packages are managed with
@@ -49,7 +49,7 @@ frustrating -- issues when working under tmux. Vim packages are managed with
 The .vimrc file contains customizations to vim itself and to the packages I
 use.
 
-### TMUX
+### tmux
 
 I find tmux extremely useful, but occasionally fiddly. I have a few minor
 adjustments in .tmux.conf to make sure everything works consistently with and
@@ -60,7 +60,7 @@ everywhere. I've gotten them to work under vim, but I still have problems with
 python and ipython. In linux, at least, Ctrl-a and Ctrl-e serve as the HOME and
 END keys, so I suppose I'll use those.
 
-### COLORS
+### colors
 
 I use the [base16](http://chriskempson.github.io/base16/) color scheme and its
 variants. This
@@ -71,11 +71,11 @@ shell scripts that can be used to generate gnome terminal profiles. The default
 I find that I don't have to change the color scheme in vim if my terminal
 colors are good to begin with.
 
-### FONTS
+### fonts
 
 I use the (Hack)[https://github.com/chrissimpkins/Hack] font for writing code.
 
-### PYTHON
+### python
 
 I use the Ubuntu repositories for setting up my python environment. Get the
 latest version of (python 3) directly from the repository with
@@ -188,13 +188,22 @@ Finally, install the library itself
 
 `pip install scikit-learn`
 
-### LATEX
+### LaTeX
 
 I use the full LaTeX distribution from the Ubuntu repositories -- i.e.
 
 `apt-get install texlive`
 
-### WEBSERVER
+### webserver
 
 I generally have a webserver running on my machine for keeping notebooks and
 journals.
+
+### git
+
+Install/update git and get git-gui as well. Generate a public/private [ssh
+key](https://help.github.com/articles/generating-ssh-keys/). Set vim to be the
+default editor (for git, and other programs) with:
+
+`export VISUAL=vim`
+`export EDITOR="$VISUAL"`
