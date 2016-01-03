@@ -49,7 +49,7 @@ ZSH_THEME="pygmalion"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git virtualenv)
 
 # User configuration
 
@@ -90,4 +90,4 @@ export TERM="xterm-256color"
 
 # Aliases
 alias gmack="/usr/bin/gm"
-
+alias vpi="virtualenv_prompt_info"
