@@ -1,121 +1,166 @@
+" Disable some Vi defaults.
 set nocompatible
-filetype off
 
-" Vundle setup
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Let Vundle manage Vundle
-Plugin 'VundleVim/Vundle.vim'
-
-"""""""""""""""""""""""""""""
-" Vundle plugin definitions "
-
-Plugin 'tpope/vim-fugitive'  " git wrapper
-Plugin 'flazz/vim-colorschemes'  " colors!
-Plugin 'kien/ctrlp.vim'  " full path everything finder
-
-Plugin 'scrooloose/syntastic'  " syntax checking
-Plugin 'vim-scripts/Tagbar'  " tag browsing
-Plugin 'tpope/vim-commentary'  " comment with motions
-" Plugin 'Valloric/YouCompleteMe'  " autocomplete - trouble
-Plugin 'davidhalter/jedi'  " python autocompelte / static analysis
-Plugin 'bling/vim-airline'  " statusbar upgrade
-" Plugin 'chriskempson/base16-vim'
-
-" Vundle plugin definitions "
-"""""""""""""""""""""""""""""
-
-" Load plugins
-call vundle#end()
-filetype plugin indent on
-
-" Colors (this probably doesn't do much)
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
+" Turn on filetype plugins.
+if has('autocmd')
+    filetype plugin indent on
 endif
 
-" Syntax
-syntax on
-set showmatch
+" Enable syntax highlighting.
+if has('syntax')
+    syntax enable
+endif
 
-" Lines and wrapping
-set number
-set textwidth=79
-set colorcolumn=80
-
-" Indentation
-set expandtab
-set shiftwidth=4
-set tabstop=4
+" Autoindent when starting new line.
 set autoindent
-set smartindent
 
-" Shortcut to disable auto indenting in current file
-nnoremap <F8> :setl noai nocin nosi inde=<CR>
+" Allow backspace in insert mode.
+set backspace=indent,eol,start
 
-" Airline
+" Don't scan included files since the .tags file is more performant.
+set complete-=i
+
+" Use 'shiftwiidth' when using `<Tab>` in front of a line.
+" By default, it is used only for shift commands (`<`, `>`).
+set smarttab
+
+" Disable octal format for number processing.
+set nrformats-=octal
+
+" Allow for mappings including `Esc` while preserving zero timeout for
+" pressing it manually.
+set ttimeout
+set ttimeoutlen=100
+
+" Enable highlighted, case-insensitive, incremental search.
+set incsearch
+
+" Indent using four spaces.
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" Use `Ctrl-L` to clear the highlighting of :set hlsearch.
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+
+" Alow show window statuses, even if there is only one.
 set laststatus=2
 
-" CtrlP configuration
-nnoremap <leader>. :CtrlPTag<cr>
+" Show the line and column number of the cursor position.
+set ruler
 
-" Colorscheme
-" colorscheme Tomorrow
+" Show the selected block in visual mode.
+set showcmd
 
-" Change spelling highlights to underline
-set spell
-highlight clear SpellBad
-highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
-highlight clear SpellCap
-highlight SpellCap term=underline cterm=underline
-highlight clear SpellRare
-highlight SpellRare term=underline cterm=underline
-highlight clear SpellLocal
-highlight SpellLocal term=underline cterm=underline
-
-" Change fold colors
-highlight Folded cterm=none ctermfg=DarkYellow ctermbg=none
-highlight FoldColumn cterm=none ctermfg=DarkYellow ctermbg=none
-
-" Misc
-set title
+" Autocomplete commands.
+" Enalbe `Ctrl-N` and `Ctrl-P` to scroll through matches.
 set wildmenu
+
+" When 'wrap' is on, display last line even if it doesn't fit.
+set display+=lastline
+
+" Force utf-8 encoding.
+set encoding=utf-8
+
+" Search upwards for tags file instead of only locally.
+if has('path_extra')
+    setglobal tags-=./tags tags^=./tags;
+endif
+
+" Reload unchanged files automatically.
+set autoread
+
+" Increase history size to 1000 items.
+set history=1000
+
+" Allow color schemes to do bright colors with forcing bold.
+if &t_Co == 8 && TERM !~# '^linux'
+    set t_Co=16
+endif
+
+" Dark background
+set background=dark
+
+" Y yanks from the cursor to the end of line as expected (see :help Y)
+nnoremap Y y$
+
+" Highlight line under cursor.
+"set cursorline
+
+" Keep some lines above or below cursor when scrolling.
+set scrolloff=8
+
+" Keep some columns on either side of the cursor when scrolling horizontally.
+set sidescroll=1
+set sidescrolloff=15
+
+" If opening buffer search first in opened windows.
+set switchbuf=usetab
+
+" Hide buffers instead of asking to save them.
+set hidden
+
+" Wrap lines by default
+set wrap linebreak
+set showbreak=" "
+
+" Allow easy navigation between wrapped lines.
+vmap j gj
+vmap k gk
+nmap j gj
+nmap k gk
+
+" Autocomplete as much as possible.
+set wildmode=longest,full
+
+" Show line numbers.
+set number
+
+" Disable error beeps.
+set noerrorbells
+set visualbell
+
+" Do not fold by default; if folding, do for some levels.
+set foldmethod=indent
+set foldnestmax=3
+set nofoldenable
+
+" Enable mouse for scrolling and window resizing.
 set mouse=a
-set cmdheight=2
 
-" Syntastic
+" Disable swap.
+set noswapfile
 
-" Syntastic configuration
-" set statusline+=%warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+" Enable search highlighting.
+set hlsearch
 
-" When/how to check the file
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Ignore case when searching.
+set ignorecase
 
-" Use python3 linter
-let g:syntastic_python_python_exec = '/usr/bin/python3'
-let g:syntastic_python_checkers = ['flake8', 'pep8', 'python']
+" Show mode in statusbar not separately.
+"set noshowmode
 
-" Jedi-vim 
-" Using <C-N> for omnicompletion
-inoremap <silent> <buffer> <C-N> <c-x><c-o>
-let g:jedi#popup_select_first=0  " don't automatically select the first item
+" Don't ignore case when search does have a cpital letter.
+set smartcase
 
-" Fix the pink(!) autocomplete suggestion menu
-hi Pmenu cterm=none ctermfg=Blue ctermbg=none
+" Use dash as word separator
+set iskeyword+=-
 
-" Related, but not of jedi-vim
-set completeopt=menuone,longest,preview
+" Add gems.tags to files searched for tags.
+set tags+=gems.tags
 
-" ------------
-" Commands ---
+" Disable output, vcs, archive, rails, temp and backup files.
+"set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+"set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+"set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+"set wildignore+=*.swp,*~,._*
 
-" Visual selection by range
-command! -range Vis call setpos('.', [0,<line1>,0,0]) |
-                    \ exe "normal V" |
-                    \ call setpos('.', [0,<line2>,0,0])
+" Set window title by default.
+set title
+
+" Always focus on split window.
+set splitright
+set splitbelow
+
+" Do not display messages on starting Vim.
+set shortmess+=I
